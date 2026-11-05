@@ -1,0 +1,29 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "This is Namaste React ",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karan2399/Namaste-React.git"
+  },
+  "keywords": [],
+  "author": "Karan Patel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karan2399/Namaste-React/issues"
+  },
+  "homepage": "https://github.com/karan2399/Namaste-React#readme",
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "browserslist":[
+    "last 2 versions"
+  ]
+}
