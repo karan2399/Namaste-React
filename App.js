@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { resData } from "./data";
 
 // Header
 // Logo
@@ -50,26 +51,17 @@ const Body = () => {
         <button>Search</button>
       </div>
       <div className="res-container">
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
+        {resData.map((res) => {
+          return <RestaurantCard key={res.info.id} resData={res} />;
+        })}
       </div>
     </div>
   );
 };
 
-const RestaurantCard = () => {
+const RestaurantCard = (props) => {
+  const { name, cloudinaryImageId, cuisines, avgRating, sla } =
+    props.resData.info;
   return (
     <div
       className="res-card"
@@ -78,19 +70,26 @@ const RestaurantCard = () => {
       }}>
       <img
         className="res-logo"
-        src="https://i.pinimg.com/736x/d7/2f/ea/d72fea62923a6ce30b284b8ee156bb24.jpg"
+        src={
+          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
+          cloudinaryImageId
+        }
         alt="Res Logo"
       />
-      <h3>The Healthy Planet</h3>
-      <h4>Bowls | Burritos | Salads | Wraps</h4>
-      <h4>4.3 Stars</h4>
-      <h4>38 Minutes</h4>
+      <h3>{name}</h3>
+      <h4>{cuisines.join(", ")}</h4>
+      <h4>{avgRating} Stars</h4>
+      <h4>{sla.deliveryTime} Minutes</h4>
     </div>
   );
 };
 
 const Footer = () => {
-  return <div className="footer">Copyright 2026 | Foodology</div>;
+  return (
+    <div className="footer">
+      <div>Copyright 2026 | Foodology</div>
+    </div>
+  );
 };
 
 const AppLayout = () => {
