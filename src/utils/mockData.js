@@ -1,4 +1,4 @@
-export const resData = [
+const resData = [
   {
     "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
     info: {
@@ -751,3 +751,5 @@ export const resData = [
     widgetId: "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo",
   },
 ];
+
+export default resData;
