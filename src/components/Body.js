@@ -1,16 +1,60 @@
-import resData from "../utils/mockData";
+import { SWIGGY_API_URL } from "../utils/constants";
 import RestaurantCard from "./RestaurantCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   // Local State Variable - useState (Hook)
-  const [listOfRestaurants, setListOfRestaurants] = useState(resData);
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [listOfFilteredRestaurants, setListOfFilteredRestaurants] = useState(
+    [],
+  );
 
-  return (
+  const [searchInput, setSearchInput] = useState("");
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(SWIGGY_API_URL);
+    const jsonData = await data.json();
+    setListOfRestaurants(
+      // Optional Chaining
+      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants,
+    );
+    setListOfFilteredRestaurants(
+      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants,
+    );
+  };
+
+  const search = (searchtext) => {
+    setListOfFilteredRestaurants(listOfRestaurants);
+    if (searchtext !== "") {
+      const filteredRes = listOfRestaurants.filter((res) =>
+        res.info.name.toLowerCase().includes(searchtext.toLowerCase()),
+      );
+      setListOfFilteredRestaurants(filteredRes);
+    }
+  };
+  // Conditional Rendering
+  return listOfRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="search">
-        <input type="text" placeholder="Search" />
-        <button>Search</button>
+        <input
+          type="text"
+          placeholder="Search"
+          name="search-input"
+          value={searchInput}
+          onChange={(e) => {
+            setSearchInput(e.target.value);
+          }}
+        />
+        <button onClick={() => search(searchInput)}>Search</button>
       </div>
 
       <div className="filter">
@@ -27,7 +71,7 @@ const Body = () => {
       </div>
 
       <div className="res-container">
-        {listOfRestaurants.map((res) => {
+        {listOfFilteredRestaurants.map((res) => {
           return <RestaurantCard key={res.info.id} resData={res} />;
         })}
       </div>
