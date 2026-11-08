@@ -143,6 +143,7 @@ body {
 
 .res-container {
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 300px));
   gap: 22px;
   width: min(100%, 1280px);
@@ -207,6 +208,27 @@ body {
   justify-content: center;
   margin: 0 auto 22px;
   width: min(100%, 1280px);
+}
+
+.menu-message {
+  width: min(100% - 32px, 680px);
+  margin: 48px auto;
+  padding: 24px;
+  border: 1px solid #fed7aa;
+  border-radius: 16px;
+  background: #fff7ed;
+  color: #7c2d12;
+  text-align: center;
+}
+
+.menu-message h1 {
+  margin: 0 0 10px;
+  font-size: 1.35rem;
+}
+
+.menu-message p {
+  margin: 0;
+  line-height: 1.6;
 }
 
 @media (max-width: 768px) {
@@ -287,6 +309,7 @@ body {
 
 .shimmer-container {
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 300px));
   gap: 22px;
   width: min(100%, 1280px);

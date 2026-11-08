@@ -62,9 +62,10 @@ const Body = () => {
           className="filter-btn"
           onClick={() => {
             // Filter Logic here
-            setListOfRestaurants((prev) => {
-              return prev.filter((res) => res.info.avgRating > 4);
-            });
+            const filteredRes = listOfRestaurants.filter(
+              (res) => res.info.avgRating > 4,
+            );
+            setListOfFilteredRestaurants(filteredRes);
           }}>
           Top Rated
         </button>
@@ -72,7 +73,13 @@ const Body = () => {
 
       <div className="res-container">
         {listOfFilteredRestaurants.map((res) => {
-          return <RestaurantCard key={res.info.id} resData={res} />;
+          return (
+            <RestaurantCard
+              key={res.info.id}
+              resData={res}
+              onClick={() => {}}
+            />
+          );
         })}
       </div>
     </div>
