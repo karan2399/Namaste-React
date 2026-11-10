@@ -11,3 +11,6 @@ export const SWIGGY_RESTAURANT_API =
 
 export const SWIGGY_RES_IMG_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1600,h_640,c_fill/";
+
+export const SWIGGY_ITEM_IMG_URL =
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/";

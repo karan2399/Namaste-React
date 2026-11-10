@@ -1,22 +1,25 @@
 import { useEffect, useState } from "react";
 import { SWIGGY_RES_IMG_URL, SWIGGY_RESTAURANT_API } from "../utils/constants";
 import Shimmer from "./Shimmer";
+import RestaurantMenuItem from "./RestaurantMenuItem";
+import { useParams } from "react-router";
 
 const RestaruantMenu = () => {
   useEffect(() => {
     fetchMenu();
   }, []);
 
+  const { resId } = useParams();
+
   const [resInfo, setResInfo] = useState(null);
 
   const fetchMenu = async () => {
     const resData = await fetch(
-      SWIGGY_RESTAURANT_API + "restaurantId=" + 37680,
+      SWIGGY_RESTAURANT_API + "restaurantId=" + resId,
     );
     const jsonData = await resData.json();
 
     setResInfo(jsonData.data);
-    console.log(jsonData.data.cards[2]?.card?.card?.info);
   };
 
   if (resInfo === null) {
@@ -28,19 +31,39 @@ const RestaruantMenu = () => {
   const { itemCards } =
     resInfo?.cards[4].groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
   return (
-    <div className="me nu">
-      <img src={SWIGGY_RES_IMG_URL + cloudinaryImageId} alt="" />
-      <h1>{name}</h1>
-      {/* <h2>{cuisines.join(",")}</h2> */}
-      <h2>{costForTwoMessage}</h2>
-      <h2>{avgRating}</h2>
+    <div className="menu-page">
+      <section className="menu-hero">
+        <div className="menu-hero-copy">
+          <p className="menu-eyebrow">Restaurant</p>
+          <h1>{name}</h1>
+          <div className="menu-meta">
+            <span className="menu-rating">★ {avgRating}</span>
+            <span>{costForTwoMessage}</span>
+          </div>
+        </div>
+        {cloudinaryImageId && (
+          <img
+            className="menu-hero-image"
+            src={SWIGGY_RES_IMG_URL + cloudinaryImageId}
+            alt={name}
+          />
+        )}
+      </section>
 
-      <h3>Menu</h3>
-      <ul>
-        {itemCards.map((item) => {
-          return <li key={item.card.info.id}>{item.card.info.name}</li>;
-        })}
-      </ul>
+      <section className="menu-section">
+        <div className="menu-section-heading">
+          <p className="menu-eyebrow">Made fresh for you</p>
+          <h2>Our Menu</h2>
+        </div>
+        <div className="menu-items">
+          {itemCards.map((item) => (
+            <RestaurantMenuItem
+              menuItem={item.card.info}
+              key={item.card.info.id}
+            />
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
