@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link, NavLink } from "react-router";
+import useActiveStatus from "../utils/useActiveStatus";
 
 export const Header = () => {
   const [btnText, setBtnText] = useState("Login");
+  const isOnline = useActiveStatus();
 
   // useffect takes a Callback Function and Dependency array
   // Only callback fn is mandatory
@@ -14,31 +16,65 @@ export const Header = () => {
     <div className="header">
       <div className="logo-container">
         <Link to="/">
-          {" "}
-          <img className="logo" src={LOGO_URL} alt="" />{" "}
+          <img className="logo" src={LOGO_URL} alt="Foodology home" />
         </Link>
-
-        <span>
-          {" "}
-          <Link to="/"> Foodology </Link>
-        </span>
+        <Link className="brand-name" to="/">
+          Foodology
+        </Link>
       </div>
       <div className="nav-items">
         <ul>
-          <li>
-            <Link to="/"> Home </Link>
+          <li className="status-item">
+            <span
+              className={`status-indicator ${isOnline ? "is-online" : "is-offline"}`}
+            />
+            <span>{isOnline ? "Online" : "Offline"}</span>
           </li>
           <li>
-            {" "}
-            <Link to="/about"> About </Link>
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                isActive ? "nav-link nav-link-active" : "nav-link"
+              }>
+              Home
+            </NavLink>
           </li>
           <li>
-            {" "}
-            <Link to="/contact"> Contact Us </Link>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive ? "nav-link nav-link-active" : "nav-link"
+              }>
+              About
+            </NavLink>
           </li>
           <li>
-            {" "}
-            <Link to="/about"> Cart </Link>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive ? "nav-link nav-link-active" : "nav-link"
+              }>
+              Contact Us
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/grocery"
+              className={({ isActive }) =>
+                isActive ? "nav-link nav-link-active" : "nav-link"
+              }>
+              Grocery
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/cart"
+              className={({ isActive }) =>
+                isActive ? "nav-link nav-link-active" : "nav-link"
+              }>
+              Cart
+            </NavLink>
           </li>
           <li>
             <button

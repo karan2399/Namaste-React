@@ -1,26 +1,15 @@
-import { useEffect, useState } from "react";
 import { SWIGGY_RES_IMG_URL, SWIGGY_RESTAURANT_API } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import RestaurantMenuItem from "./RestaurantMenuItem";
 import { useParams } from "react-router";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaruantMenu = () => {
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
   const { resId } = useParams();
 
-  const [resInfo, setResInfo] = useState(null);
-
-  const fetchMenu = async () => {
-    const resData = await fetch(
-      SWIGGY_RESTAURANT_API + "restaurantId=" + resId,
-    );
-    const jsonData = await resData.json();
-
-    setResInfo(jsonData.data);
-  };
+  // Custom Hook to optimize the code. API fetching seperate from component.
+  // How to get data, is not this component's concern, so it must be seperated. Single Responsibility Principle.
+  const resInfo = useRestaurantMenu(resId);
 
   if (resInfo === null) {
     return <Shimmer />;

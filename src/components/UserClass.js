@@ -2,38 +2,58 @@ import { Component } from "react";
 
 class UserClass extends Component {
   constructor(props) {
-    console.log("UserClass: Constructor");
-
     super(props);
-
     this.state = {
-      count: 0,
-      count2: 1,
+      userInfo: {
+        name: "Karan Patel",
+        location: "India",
+        login: "karan2399",
+        bio: "Building modern web experiences.",
+        avatar_url: "https://avatars.githubusercontent.com/u/24054449?v=4",
+        html_url: "https://github.com/karan2399",
+      },
     };
   }
 
   render() {
-    console.log("UserClass: render");
-    const { name } = this.props;
-    const { count } = this.state;
+    const { name, location, login, avatar_url, bio, html_url } =
+      this.state.userInfo;
+
     return (
-      <div className="user-card">
-        <h2>{name}</h2> {this.score}
-        <h3>Ahmedabad, India</h3>
-        <h4>Contact: @karan__234</h4>
-        <h6>Count: {count}</h6>
-        <button
-          onClick={() => {
-            // Never Update State Variables Directly
-            //When you use setState and pass state variables,
-            // it updates only those variables; it doesn't affect other state variables.
-            this.setState({ count: this.state.count + 1 });
-          }}>
-          Increase Count 1
-        </button>
-        <h6>Count 2: {this.state.count2}</h6>
+      <div className="about-user-card">
+        <img
+          className="about-user-image"
+          src={avatar_url}
+          alt={`${name} profile`}
+        />
+        <div className="about-user-details">
+          <p className="about-user-label">Developer profile</p>
+          <h2>{name}</h2>
+          <h3>{location}</h3>
+          <p className="about-user-bio">{bio}</p>
+          <div className="about-user-links">
+            <span>@{login}</span>
+            <a href={html_url} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+          </div>
+        </div>
       </div>
     );
+  }
+
+  async componentDidMount() {
+    const data = await fetch("https://api.github.com/users/karan2399");
+    const jsonData = await data.json();
+    this.setState({ userInfo: jsonData });
+  }
+
+  componentDidUpdate() {
+    console.log("componentDidUpdate");
+  }
+
+  componentWillUnmount() {
+    console.log("componentWillUnmount");
   }
 }
 

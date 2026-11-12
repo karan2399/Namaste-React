@@ -7,7 +7,7 @@ export const SWIGGY_API_URL =
   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.0415858&lng=72.4920091&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 
 export const SWIGGY_RESTAURANT_API =
-  "https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=23.0415858&lng=72.4920091&";
+  "https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=23.0415858&lng=72.4920091&restaurantId=";
 
 export const SWIGGY_RES_IMG_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1600,h_640,c_fill/";
