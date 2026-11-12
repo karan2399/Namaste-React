@@ -32,7 +32,24 @@ const appRouter = createBrowserRouter([
       {
         path: "/grocery",
         element: (
-          <Suspense fallback={<h1> Loading...</h1>}>
+          <Suspense
+            fallback={
+              <main className="route-loading" role="status" aria-live="polite">
+                <div className="route-loading-card">
+                  <span className="route-loading-spinner" aria-hidden="true" />
+                  <p className="route-loading-eyebrow">Foodology</p>
+                  <h1>Getting your grocery store ready</h1>
+                  <p className="route-loading-copy">
+                    Just a moment while we bring everything together.
+                  </p>
+                  <div className="route-loading-skeleton" aria-hidden="true">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                </div>
+              </main>
+            }>
             <Grocery />
           </Suspense>
         ),
