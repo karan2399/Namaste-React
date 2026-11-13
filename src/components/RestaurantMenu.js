@@ -4,6 +4,7 @@ import RestaurantMenuItem from "./RestaurantMenuItem";
 import { useParams } from "react-router";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaruantMenu = () => {
   const { resId } = useParams();
@@ -11,6 +12,8 @@ const RestaruantMenu = () => {
   // Custom Hook to optimize the code. API fetching seperate from component.
   // How to get data, is not this component's concern, so it must be seperated. Single Responsibility Principle.
   const resInfo = useRestaurantMenu(resId);
+
+  const [showIndex, setShowIndex] = useState(0);
 
   if (resInfo === null) {
     return <Shimmer />;
@@ -30,16 +33,16 @@ const RestaruantMenu = () => {
 
   return (
     <div className="mx-auto mt-9 mb-16 w-[calc(100%_-_2rem)] max-w-[960px] flex-1 max-md:mt-6 max-[480px]:mt-[18px] max-[480px]:mb-9 max-[480px]:w-[calc(100%_-_24px)]">
-      <section className="flex items-center justify-between gap-6 overflow-hidden rounded-[28px] border border-[#f1e5d9] bg-[radial-gradient(ellipse_at_90%_15%,rgba(255,215,170,0.5),transparent_38%),linear-gradient(135deg,#fffaf5,#fff)] p-[clamp(24px,5vw,48px)] shadow-[0_16px_40px_rgba(89,55,27,0.08)] max-[480px]:gap-3 max-[480px]:rounded-[22px] max-[480px]:p-5">
+      <section className="flex items-center justify-between gap-6 overflow-hidden rounded-[28px] border border-[#f1e5d9] bg-[radial-gradient(ellipse_at_90%_15%,rgba(255,215,170,0.5),transparent_38%),linear-gradient(135deg,#fffaf5,#fff)] p-[clamp(24px,5vw,48px)] shadow-[0_16px_40px_rgba(89,55,27,0.08)] max-[480px]:gap-3 max-[480px]:rounded-[22px] max-[480px]:p-5 dark:border-slate-700 dark:bg-[radial-gradient(ellipse_at_90%_15%,rgba(249,115,22,0.12),transparent_38%),linear-gradient(135deg,#1e293b,#0f172a)] dark:shadow-black/30">
         <div className="min-w-0">
-          <p className="mb-2 text-[0.76rem] font-extrabold tracking-[0.14em] text-[#dc6b32] uppercase">
+          <p className="mb-2 text-[0.76rem] font-extrabold tracking-[0.14em] text-[#dc6b32] uppercase dark:text-orange-300">
             Restaurant
           </p>
-          <h1 className="m-0 text-[clamp(1.8rem,5vw,3rem)] leading-[1.1] tracking-[-0.045em] text-[#18212b]">
+          <h1 className="m-0 text-[clamp(1.8rem,5vw,3rem)] leading-[1.1] tracking-[-0.045em] text-[#18212b] dark:text-slate-100">
             {name}
           </h1>
-          <div className="mt-5 flex flex-wrap items-center gap-2.5 text-[0.95rem] text-slate-500 max-[480px]:mt-[14px] max-[480px]:gap-2 max-[480px]:text-[0.84rem]">
-            <span className="rounded-full bg-green-50 px-[11px] py-1.5 font-extrabold text-green-800">
+          <div className="mt-5 flex flex-wrap items-center gap-2.5 text-[0.95rem] text-slate-500 max-[480px]:mt-[14px] max-[480px]:gap-2 max-[480px]:text-[0.84rem] dark:text-slate-400">
+            <span className="rounded-full bg-green-50 px-[11px] py-1.5 font-extrabold text-green-800 dark:bg-green-950 dark:text-green-300">
               ★ {avgRating}
             </span>
             <span>{costForTwoMessage}</span>
@@ -59,7 +62,7 @@ const RestaruantMenu = () => {
           <p className="mb-2 text-[0.76rem] font-extrabold tracking-[0.14em] text-[#dc6b32] uppercase">
             Made fresh for you
           </p>
-          <h2 className="m-0 text-[clamp(1.5rem,4vw,2rem)] tracking-[-0.035em] text-[#18212b]">
+          <h2 className="m-0 text-[clamp(1.5rem,4vw,2rem)] tracking-[-0.035em] text-[#18212b] dark:text-slate-100">
             Our Menu
           </h2>
         </div>
@@ -73,11 +76,19 @@ const RestaruantMenu = () => {
         </div> */}
         {/* Categories Accordian */}
 
-        {categories.map((cat) => {
+        {categories.map((cat, index) => {
           return (
             <RestaurantCategory
               key={cat.card?.card?.categoryId}
               catData={cat.card.card}
+              setShowIndex={() => {
+                if (index === showIndex) {
+                  setShowIndex(-1);
+                } else {
+                  setShowIndex(index);
+                }
+              }}
+              showItems={index === showIndex ? true : false}
             />
           );
         })}

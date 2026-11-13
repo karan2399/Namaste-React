@@ -20,29 +20,29 @@ class UserClass extends Component {
       this.state.userInfo;
 
     return (
-      <div className="flex w-full max-w-[380px] flex-col items-center gap-[18px] rounded-[28px] border border-[#f1e5d9] bg-white/65 px-[18px] py-6 shadow-[0_16px_30px_rgba(15,23,42,0.08)]">
+      <div className="flex w-full max-w-[380px] flex-col items-center gap-[18px] rounded-[28px] border border-[#f1e5d9] bg-white/65 px-[18px] py-6 shadow-[0_16px_30px_rgba(15,23,42,0.08)] dark:border-slate-700 dark:bg-slate-800/80 dark:shadow-black/30">
         <img
           className="size-[150px] rounded-[26px] border-[5px] border-white/95 object-cover shadow-[0_12px_24px_rgba(15,23,42,0.12)]"
           src={avatar_url}
           alt={`${name} profile`}
         />
         <div className="w-full text-center">
-          <p className="mb-1.5 text-[0.74rem] font-extrabold tracking-[0.12em] text-[#d96a2d] uppercase">
+          <p className="mb-1.5 text-[0.74rem] font-extrabold tracking-[0.12em] text-[#d96a2d] uppercase dark:text-orange-300">
             Developer profile
           </p>
-          <h2 className="m-0 text-[clamp(1.5rem,3vw,2rem)] tracking-[-0.04em] text-[#18212b]">
+          <h2 className="m-0 text-[clamp(1.5rem,3vw,2rem)] tracking-[-0.04em] text-[#18212b] dark:text-slate-100">
             {name}
           </h2>
-          <h3 className="mt-2 mb-0 text-[0.94rem] font-semibold text-slate-500">
+          <h3 className="mt-2 mb-0 text-[0.94rem] font-semibold text-slate-500 dark:text-slate-400">
             {location}
           </h3>
-          <p className="mt-3 mb-0 text-[0.95rem] leading-[1.7] text-[#536276]">
+          <p className="mt-3 mb-0 text-[0.95rem] leading-[1.7] text-[#536276] dark:text-slate-300">
             {bio}
           </p>
-          <div className="mt-[14px] flex flex-wrap items-center justify-center gap-2.5 text-[0.9rem] font-semibold text-[#364152]">
+          <div className="mt-[14px] flex flex-wrap items-center justify-center gap-2.5 text-[0.9rem] font-semibold text-[#364152] dark:text-slate-300">
             <span>@{login}</span>
             <a
-              className="rounded-full bg-[#fff3e8] px-3 py-[7px] text-[#c95b22] transition duration-200 hover:-translate-y-px hover:bg-[#ffe7d1]"
+              className="rounded-full bg-[#fff3e8] px-3 py-[7px] text-[#c95b22] transition duration-200 hover:-translate-y-px hover:bg-[#ffe7d1] dark:bg-slate-700 dark:text-orange-300 dark:hover:bg-slate-600"
               href={html_url}
               target="_blank"
               rel="noreferrer">

@@ -1,31 +1,31 @@
-import React, { useState } from "react";
 import RestaurantItemList from "./RestaurantItemList";
 
-const RestaurantCategory = ({ catData }) => {
-  const [showItems, setShowItems] = useState(false);
-  const handleAccordianClick = () => {
-    setShowItems(!showItems);
-  };
+const RestaurantCategory = ({ catData, showItems, setShowIndex }) => {
   return (
-    <div className="flex">
-      {/* Header */}
-
-      <div className="w-6/12 mx-auto my-4 cursor-pointer font-bold text-lg bg-gray-50 shadow-lg p-4">
-        <div
-          className="flex justify-between"
-          onClick={() => handleAccordianClick()}>
-          <span>
-            {catData.title} ({catData.itemCards.length})
+    <section className="mx-auto my-4 w-full max-w-3xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/20">
+      <button
+        className="flex w-full cursor-pointer items-center justify-between gap-4 bg-slate-50 px-5 py-4 text-left text-base font-bold text-slate-800 transition hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-orange-500 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
+        type="button"
+        aria-expanded={showItems}
+        onClick={() => setShowIndex()}>
+        <span>
+          {catData.title}
+          <span className="ml-2 text-sm font-medium text-slate-500 dark:text-slate-400">
+            {catData.itemCards.length} items
           </span>
-          {showItems && <span>-</span>}
-          {!showItems && <span>+</span>}
+        </span>
+        <span
+          className="grid size-8 shrink-0 place-items-center rounded-full bg-white text-lg text-orange-600 shadow-sm dark:bg-slate-900 dark:text-orange-300"
+          aria-hidden="true">
+          {showItems ? "−" : "+"}
+        </span>
+      </button>
+      {showItems && (
+        <div className="border-t border-slate-100 dark:border-slate-800">
+          <RestaurantItemList items={catData.itemCards} />
         </div>
-
-        {showItems && <RestaurantItemList items={catData.itemCards} />}
-      </div>
-
-      {/* Accordian Body */}
-    </div>
+      )}
+    </section>
   );
 };
 
