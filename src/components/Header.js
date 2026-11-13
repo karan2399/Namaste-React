@@ -3,6 +3,11 @@ import { LOGO_URL } from "../utils/constants";
 import { Link, NavLink } from "react-router";
 import useActiveStatus from "../utils/useActiveStatus";
 
+const navLinkClassName = ({ isActive }) =>
+  `inline-flex min-h-10 items-center rounded-full px-[13px] py-[9px] transition-colors duration-200 hover:bg-[#fff3e8] hover:text-[#c94f1a] focus-visible:outline-3 focus-visible:outline-offset-[3px] focus-visible:outline-[#ed6a3659] ${
+    isActive ? "bg-[#fff3e8] font-extrabold text-[#c94f1a]" : ""
+  } max-md:min-h-[38px] max-md:px-[11px] max-md:py-2 max-[480px]:min-h-9 max-[480px]:px-[9px] max-[480px]:py-[7px]`;
+
 export const Header = () => {
   const [btnText, setBtnText] = useState("Login");
   const isOnline = useActiveStatus();
@@ -13,20 +18,30 @@ export const Header = () => {
   useEffect(() => {}, []);
 
   return (
-    <div className="header">
-      <div className="logo-container">
+    <div className="sticky top-0 z-10 flex flex-wrap items-center justify-between gap-[18px] border-b border-slate-200/80 bg-white/90 px-[clamp(20px,5vw,72px)] py-3 shadow-[0_8px_28px_rgba(15,23,42,0.055)] backdrop-blur-2xl max-md:justify-center max-md:px-[18px]">
+      <div className="flex items-center gap-[13px] text-[1.55rem] font-bold tracking-[-0.04em] text-[#e76f32] max-md:text-[1.4rem] max-[480px]:gap-2">
         <Link to="/">
-          <img className="logo" src={LOGO_URL} alt="Foodology home" />
+          <img
+            className="block size-[50px] rounded-full object-cover shadow-[0_3px_10px_rgba(15,23,42,0.14)] transition-transform duration-200 hover:rotate-[-5deg] hover:scale-[1.04] max-[480px]:size-12"
+            src={LOGO_URL}
+            alt="Foodology home"
+          />
         </Link>
-        <Link className="brand-name" to="/">
+        <Link
+          className="transition-colors duration-200 hover:text-[#c94f1a] focus-visible:outline-3 focus-visible:outline-offset-[3px] focus-visible:outline-[#ed6a3659]"
+          to="/">
           Foodology
         </Link>
       </div>
-      <div className="nav-items">
-        <ul>
-          <li className="status-item">
+      <div className="max-md:w-full">
+        <ul className="m-0 flex list-none flex-wrap items-center justify-center gap-1 p-0 text-[0.94rem] font-semibold text-gray-700 max-md:gap-[6px] max-md:text-[0.88rem] max-[480px]:gap-1 max-[480px]:text-[0.84rem]">
+          <li className="mr-1 inline-flex min-h-9 cursor-default items-center gap-2 rounded-full border border-[#e8edf1] bg-slate-50 px-3 text-[0.82rem] font-semibold text-[#536276] max-[480px]:mr-0 max-[480px]:gap-[7px] max-[480px]:px-[9px] max-[480px]:text-[0.76rem]">
             <span
-              className={`status-indicator ${isOnline ? "is-online" : "is-offline"}`}
+              className={`size-2 rounded-full ${
+                isOnline
+                  ? "bg-[#20a36a] shadow-[0_0_0_3px_rgba(32,163,106,0.13)]"
+                  : "bg-slate-400 shadow-[0_0_0_3px_rgba(148,163,184,0.15)]"
+              }`}
             />
             <span>{isOnline ? "Online" : "Offline"}</span>
           </li>
@@ -34,51 +49,41 @@ export const Header = () => {
             <NavLink
               to="/"
               end
-              className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
-              }>
+              className={navLinkClassName}>
               Home
             </NavLink>
           </li>
           <li>
             <NavLink
               to="/about"
-              className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
-              }>
+              className={navLinkClassName}>
               About
             </NavLink>
           </li>
           <li>
             <NavLink
               to="/contact"
-              className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
-              }>
+              className={navLinkClassName}>
               Contact Us
             </NavLink>
           </li>
           <li>
             <NavLink
               to="/grocery"
-              className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
-              }>
+              className={navLinkClassName}>
               Grocery
             </NavLink>
           </li>
           <li>
             <NavLink
               to="/cart"
-              className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
-              }>
+              className={navLinkClassName}>
               Cart
             </NavLink>
           </li>
           <li>
             <button
-              className="login-btn"
+              className="rounded-full bg-gradient-to-br from-amber-500 to-[#ed6a36] px-5 py-3 font-bold text-white shadow-[0_5px_12px_rgba(237,106,54,0.2)] transition duration-200 hover:-translate-y-px hover:brightness-105 hover:shadow-[0_8px_16px_rgba(237,106,54,0.25)] focus-visible:outline-3 focus-visible:outline-offset-[3px] focus-visible:outline-[#ed6a3659]"
               onClick={() =>
                 setBtnText((prev) => {
                   if (prev === "Login") {

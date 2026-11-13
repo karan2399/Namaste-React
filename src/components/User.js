@@ -7,7 +7,7 @@ const User = ({ name }) => {
     // API Call
   }, []);
   return (
-    <div className="user-card">
+    <div className="m-[5px] border border-black p-[5px]">
       <h2>{name}</h2>
       <h3>Ahmedabad, India</h3>
       <h4>Contact: @karan__234</h4>
