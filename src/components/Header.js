@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router";
 import useActiveStatus from "../utils/useActiveStatus";
 import UserContext from "../utils/UserContext";
 import ThemeContext from "../utils/ThemeContext";
+import { useSelector } from "react-redux";
 
 const navLinkClassName = ({ isActive }) =>
   `inline-flex min-h-10 items-center rounded-full px-[13px] py-[9px] transition-colors duration-200 hover:bg-[#fff3e8] hover:text-[#c94f1a] focus-visible:outline-3 focus-visible:outline-offset-[3px] focus-visible:outline-[#ed6a3659] dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-orange-300 ${
@@ -15,6 +16,10 @@ const navLinkClassName = ({ isActive }) =>
 export const Header = () => {
   const [btnText, setBtnText] = useState("Login");
   const isOnline = useActiveStatus();
+
+  //Use a Selector to read the store value
+  // Subscribing to the store using Selector
+  const cartItems = useSelector((store) => store.cart.items);
 
   // useContext Hook
   const user = useContext(UserContext);
@@ -75,24 +80,50 @@ export const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/cart" className={navLinkClassName}>
-              Cart
+            <NavLink
+              to="/cart"
+              className={navLinkClassName}
+              aria-label={`Cart, ${cartItems.length} ${
+                cartItems.length === 1 ? "item" : "items"
+              }`}>
+              <span className="relative inline-flex">
+                <svg
+                  className="size-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true">
+                  <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6" />
+                  <circle cx="10" cy="21" r="1" />
+                  <circle cx="19" cy="21" r="1" />
+                </svg>
+                {cartItems.length > 0 && (
+                  <span className="absolute -top-2 -right-2 grid min-h-4 min-w-4 place-items-center rounded-full bg-orange-500 px-1 text-[10px] leading-none font-bold text-white ring-2 ring-white dark:ring-slate-900">
+                    {cartItems.length}
+                  </span>
+                )}
+              </span>
             </NavLink>
           </li>
           <li>
-            <button
-              type="button"
-              className="rounded-full bg-gradient-to-br from-amber-500 to-[#ed6a36] px-4 py-2.5 text-sm font-bold text-white shadow-[0_5px_12px_rgba(237,106,54,0.2)] transition duration-200 hover:-translate-y-px hover:brightness-105 hover:shadow-[0_8px_16px_rgba(237,106,54,0.25)] focus-visible:outline-3 focus-visible:outline-offset-[3px] focus-visible:outline-[#ed6a3659]"
-              onClick={() =>
-                setBtnText((prev) => {
-                  if (prev === "Login") {
-                    return "Logout";
-                  }
-                  return "Login";
-                })
-              }>
-              {btnText}
-            </button>
+            {user.loggedInUser === "" && (
+              <button
+                type="button"
+                className="rounded-full bg-gradient-to-br from-amber-500 to-[#ed6a36] px-4 py-2.5 text-sm font-bold text-white shadow-[0_5px_12px_rgba(237,106,54,0.2)] transition duration-200 hover:-translate-y-px hover:brightness-105 hover:shadow-[0_8px_16px_rgba(237,106,54,0.25)] focus-visible:outline-3 focus-visible:outline-offset-[3px] focus-visible:outline-[#ed6a3659]"
+                onClick={() =>
+                  setBtnText((prev) => {
+                    if (prev === "Login") {
+                      return "Logout";
+                    }
+                    return "Login";
+                  })
+                }>
+                {btnText}
+              </button>
+            )}
           </li>
           <li className="inline-flex min-h-9 items-center gap-2 rounded-full border border-orange-100 bg-orange-50/80 py-1 pr-3 pl-1.5 text-sm font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
             <span className="grid size-7 place-items-center rounded-full bg-orange-500 text-xs font-bold text-white">
@@ -108,7 +139,7 @@ export const Header = () => {
               aria-pressed={theme === "dark"}
               className="inline-flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-orange-300 hover:bg-orange-50 hover:text-orange-700 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-orange-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-slate-600 dark:hover:bg-slate-700 dark:hover:text-orange-300"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-              <span aria-hidden="true">{theme === "dark" ? "☀" : "☾"}</span>
+              <span aria-hidden="true">{theme === "dark" ? "☾" : "☀"}</span>
             </button>
           </li>
         </ul>

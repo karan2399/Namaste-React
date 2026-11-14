@@ -1,6 +1,22 @@
+import { useDispatch, useSelector } from "react-redux";
 import { SWIGGY_ITEM_IMG_URL } from "../utils/constants";
+import { addItem, removeItem } from "../utils/slices/cartSlice";
 
 const RestaurantItemList = ({ items }) => {
+  const dispatch = useDispatch();
+
+  const cartItems = useSelector((store) => store.cart.items);
+
+  const handleAddItem = (item) => {
+    // Dispatch and Action
+    dispatch(addItem(item));
+  };
+
+  const handleRemoveItem = (item) => {
+    // Dispatch and Action
+    dispatch(removeItem(item));
+  };
+
   return (
     <div className="mx-auto w-full max-w-3xl px-4 py-6">
       <ul className="m-0 grid list-none gap-4 p-0">
@@ -25,11 +41,23 @@ const RestaurantItemList = ({ items }) => {
                 src={SWIGGY_ITEM_IMG_URL + item.card.info.imageId}
                 alt={item.card.info.name}
               />
-              <button
-                className="absolute right-1 bottom-1 left-1 cursor-pointer rounded-lg border border-orange-200 bg-white px-3 py-2 text-sm font-bold text-orange-600 shadow-sm transition hover:border-orange-500 hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 dark:border-slate-600 dark:bg-slate-800 dark:text-orange-300 dark:hover:bg-slate-700"
-                type="button">
-                Add
-              </button>
+
+              {(() => {
+                const isInCart = cartItems.some(
+                  (c) => c.card.info.id === item.card.info.id,
+                );
+
+                return (
+                  <button
+                    onClick={() =>
+                      isInCart ? handleRemoveItem(item) : handleAddItem(item)
+                    }
+                    className="absolute right-1 bottom-1 left-1 cursor-pointer rounded-lg border border-orange-200 bg-white px-3 py-2 text-sm font-bold text-orange-600 shadow-sm transition hover:border-orange-500 hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 dark:border-slate-600 dark:bg-slate-800 dark:text-orange-300 dark:hover:bg-slate-700"
+                    type="button">
+                    {isInCart ? "Remove" : "Add"}
+                  </button>
+                );
+              })()}
             </div>
           </li>
         ))}

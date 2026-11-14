@@ -177,6 +177,74 @@ class About extends Component {
             </article>
           </div>
         </section>
+
+        <section className="mt-12">
+          <div className="mb-5">
+            <p className="mb-2 text-xs font-extrabold tracking-[0.16em] text-orange-600 uppercase dark:text-orange-300">
+              Recently added
+            </p>
+            <h2 className="m-0 text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+              Redux in the cart
+            </h2>
+            <p className="mt-2 mb-0 max-w-2xl text-slate-600 dark:text-slate-400">
+              Today’s practice uses Redux Toolkit to keep cart actions and
+              shared cart data in one place.
+            </p>
+          </div>
+          <div className="grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
+            <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <h3 className="m-0 text-base font-bold text-slate-900 dark:text-slate-100">
+                Store & slice
+              </h3>
+              <p className="mt-2 mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                The Redux store holds cart items, and the cart slice defines
+                how that shared state can change.
+              </p>
+              <p className="m-0 flex flex-wrap gap-2">
+                <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  appStore
+                </code>
+                <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  cartSlice
+                </code>
+              </p>
+            </article>
+            <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <h3 className="m-0 text-base font-bold text-slate-900 dark:text-slate-100">
+                Dispatching actions
+              </h3>
+              <p className="mt-2 mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                Menu buttons dispatch add and remove actions, while the cart
+                page can clear the list.
+              </p>
+              <p className="m-0 flex flex-wrap gap-2">
+                <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  RestaurantItemList
+                </code>
+                <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  Cart
+                </code>
+              </p>
+            </article>
+            <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <h3 className="m-0 text-base font-bold text-slate-900 dark:text-slate-100">
+                Selecting shared state
+              </h3>
+              <p className="mt-2 mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                The header badge and cart page read the same store, so the item
+                count stays in sync.
+              </p>
+              <p className="m-0 flex flex-wrap gap-2">
+                <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  useSelector
+                </code>
+                <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  Header
+                </code>
+              </p>
+            </article>
+          </div>
+        </section>
       </div>
     );
   }

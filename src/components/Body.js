@@ -100,6 +100,18 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="mx-auto w-full max-w-[1440px] flex-1 px-[clamp(12px,3vw,32px)] pt-8 pb-12 max-md:px-3 max-md:pt-6 max-md:pb-8">
+      <section className="mx-auto mb-7 w-full max-w-[1180px] px-1">
+        <p className="mb-2 text-xs font-extrabold tracking-[0.16em] text-orange-600 uppercase dark:text-orange-300">
+          Good food, close by
+        </p>
+        <h1 className="m-0 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-slate-100">
+          Find your next favorite.
+        </h1>
+        <p className="mt-2 mb-0 max-w-2xl text-slate-600 dark:text-slate-400">
+          Explore neighborhood restaurants, discover something new, and make
+          your next meal a good one.
+        </p>
+      </section>
       <div className="mx-auto mb-[22px] w-full max-w-[1180px] rounded-[28px] border border-[#eef1f4] bg-white/85 px-[18px] pt-[18px] pb-3 shadow-[0_14px_34px_rgba(15,23,42,0.04)] dark:border-slate-800 dark:bg-slate-900/85 dark:shadow-black/20">
         <div className="flex flex-wrap justify-center gap-3 px-0 pt-2 pb-[18px] max-md:flex-col max-md:items-center">
           <input

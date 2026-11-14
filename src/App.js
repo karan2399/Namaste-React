@@ -10,6 +10,9 @@ import RestaruantMenu from "./components/RestaurantMenu";
 import { lazy, Suspense, use, useEffect, useState } from "react";
 import UserContext from "./utils/UserContext";
 import ThemeContext from "./utils/ThemeContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 const Grocery = lazy(() => import("./components/Grocery"));
 const AppLayout = () => {
@@ -27,18 +30,19 @@ const AppLayout = () => {
     setUserName(data.name);
   }, []);
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-        <div className={theme === "dark" ? "dark" : ""}>
-          <div className="flex min-h-screen flex-col bg-slate-50 text-gray-800 dark:bg-slate-950 dark:text-slate-100">
-            <Header />
-            {/* A placeholder outlet for children */}
-            <Outlet />
-            <Footer />
+    <Provider store={appStore}>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+          <div className={theme === "dark" ? "dark" : ""}>
+            <div className="flex min-h-screen flex-col bg-slate-50 text-gray-800 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+              <Header />
+              <Outlet />
+              <Footer />
+            </div>
           </div>
-        </div>
-      </UserContext.Provider>
-    </ThemeContext.Provider>
+        </UserContext.Provider>
+      </ThemeContext.Provider>
+    </Provider>
   );
 };
 
@@ -50,6 +54,7 @@ const appRouter = createBrowserRouter([
       { path: "/", element: <Body /> },
       { path: "/about", element: <About /> },
       { path: "/contact", element: <Contact /> },
+      { path: "/cart", element: <Cart /> },
       {
         path: "/grocery",
         element: (

@@ -10,18 +10,20 @@ const RestaurantCard = (props) => {
         src={CDN_URL + cloudinaryImageId}
         alt={name}
       />
-      <h3 className="mx-0.5 mt-0.5 mb-2 text-[1.18rem] leading-[1.35] tracking-[-0.02em] max-[480px]:text-[1.15rem]">
+      <h3 className="mx-0.5 mt-0.5 mb-2 line-clamp-1 text-[1.18rem] leading-[1.35] font-bold tracking-[-0.02em] max-[480px]:text-[1.15rem]">
         {name}
       </h3>
-      <h4 className="mx-0.5 my-[7px] text-[0.9rem] leading-[1.45] font-medium text-slate-500 dark:text-slate-400">
+      <p className="mx-0.5 my-[7px] line-clamp-2 min-h-[2.6em] text-[0.9rem] leading-[1.45] text-slate-500 dark:text-slate-400">
         {cuisines.join(", ")}
-      </h4>
-      <h4 className="mx-0.5 my-[7px] text-[0.9rem] leading-[1.45] font-medium text-slate-500 dark:text-slate-400">
-        {avgRating} Stars
-      </h4>
-      <h4 className="mx-0.5 my-[7px] text-[0.9rem] leading-[1.45] font-medium text-slate-500 dark:text-slate-400">
-        {sla.deliveryTime} Minutes
-      </h4>
+      </p>
+      <div className="mx-0.5 mt-3 flex flex-wrap items-center gap-2">
+        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+          <span aria-hidden="true">★</span> {avgRating}
+        </span>
+        <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+          {sla.deliveryTime} min
+        </span>
+      </div>
     </div>
   );
 };
