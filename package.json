@@ -19,11 +19,18 @@
   },
   "homepage": "https://github.com/karan2399/Namaste-React#readme",
   "devDependencies": {
+    "@babel/core": "^7.29.13",
+    "@babel/preset-env": "^7.29.14",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
+    "babel-jest": "^30.5.2",
+    "jest": "^30.5.2",
     "parcel": "^2.16.4"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.14.0",
     "@tailwindcss/postcss": "^4.3.5",
+    "corsfix": "^2.1.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-redux": "^9.3.1",
