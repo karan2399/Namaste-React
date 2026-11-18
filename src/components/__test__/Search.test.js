@@ -12,7 +12,7 @@ global.fetch = jest.fn(() =>
 );
 
 describe("Should render Search Component", () => {
-  it("should render body component with search button", async () => {
+  it("should search for text cake in the search input", async () => {
     await act(async () =>
       render(
         <BrowserRouter>
