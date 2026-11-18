@@ -1,0 +1,93 @@
+{
+    "info": {
+        "id": "286445",
+        "name": "Zodiac by Fortune Landmark",
+        "cloudinaryImageId": "fz5g6odc2dpajepaydac",
+        "locality": "Ashram Road",
+        "areaName": "Ashram Road",
+        "costForTwo": "₹600 for two",
+        "cuisines": [
+            "Indian",
+            "Chinese",
+            "Continental",
+            "North Indian",
+            "South Indian",
+            "Oriental",
+            "Thai",
+            "American",
+            "Italian",
+            "Desserts"
+        ],
+        "avgRating": 3.8,
+        "parentId": "230081",
+        "avgRatingString": "3.8",
+        "totalRatingsString": "380",
+        "sla": {
+            "deliveryTime": 54,
+            "lastMileTravel": 9.4,
+            "serviceability": "SERVICEABLE",
+            "slaString": "50-60 mins",
+            "lastMileTravelString": "9.4 km",
+            "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+            "nextCloseTime": "2026-11-18 06:59:00",
+            "opened": true
+        },
+        "badges": {
+            "imageBadges": [
+                {
+                    "imageId": "newg.png",
+                    "description": "Premium gourmet restaurant offering an elevated, high-quality food experience."
+                }
+            ]
+        },
+        "isOpen": true,
+        "aggregatedDiscountInfoV2": {},
+        "type": "F",
+        "badgesV2": {
+            "entityBadges": {
+                "imageBased": {
+                    "badgeObject": [
+                        {
+                            "attributes": {
+                                "description": "Premium gourmet restaurant offering an elevated, high-quality food experience.",
+                                "imageId": "newg.png",
+                                "theme": ""
+                            }
+                        }
+                    ]
+                },
+                "textBased": {},
+                "textExtendedBadges": {}
+            }
+        },
+        "differentiatedUi": {
+            "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+            "differentiatedUiMediaDetails": {
+                "lottie": {},
+                "video": {}
+            }
+        },
+        "reviewsSummary": {},
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {},
+        "externalRatings": {
+            "aggregatedRating": {
+                "rating": "4.1",
+                "ratingCount": "95"
+            },
+            "source": "GOOGLE",
+            "sourceIconImageId": "v1704440323/google_ratings/rating_google_tag"
+        },
+        "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY",
+        "priceComparisonComms": {}
+    },
+    "analytics": {
+        "context": "seo-data-545c71bd-cd99-4ee5-879d-2315b99b70a1"
+    },
+    "cta": {
+        "link": "https://www.swiggy.com/city/ahmedabad/zodiac-by-fortune-landmark-ashram-road-rest286445",
+        "type": "WEBLINK"
+    }
+}

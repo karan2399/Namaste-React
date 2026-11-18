@@ -117,6 +117,7 @@ const Body = () => {
           <input
             className="w-[min(560px,80vw)] min-w-[min(220px,100%)] rounded-[14px] border border-slate-200 bg-white px-[18px] py-[14px] text-base text-slate-800 outline-none shadow-[inset_0_1px_2px_rgba(15,23,42,0.04),0_6px_18px_rgba(15,23,42,0.03)] transition duration-200 placeholder:text-slate-400 focus:-translate-y-px focus:border-[#f28a45] focus:shadow-[0_0_0_4px_rgba(242,138,69,0.14)] max-md:w-[min(100%,420px)] dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500"
             type="text"
+            data-testid="searchInput"
             placeholder="Search restaurants, cuisines, or dishes"
             name="search-input"
             value={searchInput}
