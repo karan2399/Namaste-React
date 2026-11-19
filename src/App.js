@@ -6,13 +6,14 @@ import About from "./components/About";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
 import Contact from "./components/Contact";
 import ErrorPage from "./components/ErrorPage";
-import RestaruantMenu from "./components/RestaurantMenu";
+
 import { lazy, Suspense, use, useEffect, useState } from "react";
 import UserContext from "./utils/UserContext";
 import ThemeContext from "./utils/ThemeContext";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
+import RestaurantMenu from "./components/RestaurantMenu";
 
 const Grocery = lazy(() => import("./components/Grocery"));
 const AppLayout = () => {
@@ -92,7 +93,7 @@ const appRouter = createBrowserRouter([
           </Suspense>
         ),
       },
-      { path: "/restaurants/:resId", element: <RestaruantMenu /> },
+      { path: "/restaurants/:resId", element: <RestaurantMenu /> },
     ],
     errorElement: <ErrorPage />,
   },

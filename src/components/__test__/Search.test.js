@@ -12,6 +12,21 @@ global.fetch = jest.fn(() =>
 );
 
 describe("Should render Search Component", () => {
+  beforeAll(() => {
+    // console.log("Before All");
+  });
+
+  beforeEach(() => {
+    // console.log("beforeEach");
+  });
+
+  afterAll(() => {
+    // console.log("afterAll");
+  });
+
+  afterEach(() => {
+    // console.log("afterEach");
+  });
   it("should search for text cake in the search input", async () => {
     await act(async () =>
       render(
@@ -34,5 +49,23 @@ describe("Should render Search Component", () => {
     // screen should load Coffee Card
     const cardsAfterSearch = screen.getAllByTestId("resCard");
     expect(cardsAfterSearch.length).toBe(1);
+  });
+
+  it("should filter top rated restaurants", async () => {
+    await act(async () =>
+      render(
+        <BrowserRouter>
+          <Body />
+        </BrowserRouter>,
+      ),
+    );
+    const cardsBeforeFilter = screen.getAllByTestId("resCard");
+    expect(cardsBeforeFilter.length).toBe(4);
+
+    const topRatedBtn = screen.getByRole("button", { name: "Top Rated" });
+    fireEvent.click(topRatedBtn);
+
+    const cardsAfterFilter = screen.getAllByTestId("resCard");
+    expect(cardsAfterFilter.length).toBe(1);
   });
 });

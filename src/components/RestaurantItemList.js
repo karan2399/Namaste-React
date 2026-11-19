@@ -22,6 +22,7 @@ const RestaurantItemList = ({ items }) => {
       <ul className="m-0 grid list-none gap-4 p-0">
         {items.map((item) => (
           <li
+            data-testid="food-item"
             className="grid grid-cols-[minmax(0,1fr)_6rem] items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 text-slate-800 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-orange-200 hover:shadow-md sm:p-6 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-slate-600"
             key={item.card.info.id}>
             <div className="min-w-0">

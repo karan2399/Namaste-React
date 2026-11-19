@@ -6,7 +6,7 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 import { useState } from "react";
 
-const RestaruantMenu = () => {
+const RestaurantMenu = () => {
   const { resId } = useParams();
 
   // Custom Hook to optimize the code. API fetching seperate from component.
@@ -97,4 +97,4 @@ const RestaruantMenu = () => {
   );
 };
 
-export default RestaruantMenu;
+export default RestaurantMenu;
