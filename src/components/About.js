@@ -1,6 +1,7 @@
 import { Component } from "react";
 import UserClass from "./UserClass";
 import UserContext from "../utils/UserContext";
+import { Link } from "react-router";
 
 class About extends Component {
   constructor() {
@@ -181,67 +182,132 @@ class About extends Component {
         <section className="mt-12">
           <div className="mb-5">
             <p className="mb-2 text-xs font-extrabold tracking-[0.16em] text-orange-600 uppercase dark:text-orange-300">
-              Recently added
+              New features
             </p>
             <h2 className="m-0 text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
-              Redux in the cart
+              More ways to explore Foodology
             </h2>
             <p className="mt-2 mb-0 max-w-2xl text-slate-600 dark:text-slate-400">
-              Today’s practice uses Redux Toolkit to keep cart actions and
-              shared cart data in one place.
+              Here are some features you can try, with a pointer to where each
+              one lives in the app.
             </p>
           </div>
           <div className="grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
             <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
               <h3 className="m-0 text-base font-bold text-slate-900 dark:text-slate-100">
-                Store & slice
+                Find a restaurant
               </h3>
               <p className="mt-2 mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                The Redux store holds cart items, and the cart slice defines
-                how that shared state can change.
+                Search restaurants, sort by rating or delivery time, and filter
+                for vegetarian or currently open options.
               </p>
               <p className="m-0 flex flex-wrap gap-2">
                 <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                  appStore
+                  Body
                 </code>
                 <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                  cartSlice
+                  RestaurantCard
                 </code>
               </p>
+              <Link
+                className="mt-4 inline-flex rounded-full bg-orange-50 px-3 py-2 text-sm font-bold text-orange-700 hover:bg-orange-100 dark:bg-slate-800 dark:text-orange-300 dark:hover:bg-slate-700"
+                to="/">
+                Explore restaurants
+              </Link>
             </article>
             <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
               <h3 className="m-0 text-base font-bold text-slate-900 dark:text-slate-100">
-                Dispatching actions
+                Browse restaurant menus
               </h3>
               <p className="mt-2 mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                Menu buttons dispatch add and remove actions, while the cart
-                page can clear the list.
+                Open a restaurant to explore its menu categories and add or
+                remove dishes.
               </p>
               <p className="m-0 flex flex-wrap gap-2">
                 <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                  RestaurantItemList
+                  RestaurantMenu
+                </code>
+                <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  RestaurantCategory
+                </code>
+              </p>
+              <Link
+                className="mt-4 inline-flex rounded-full bg-orange-50 px-3 py-2 text-sm font-bold text-orange-700 hover:bg-orange-100 dark:bg-slate-800 dark:text-orange-300 dark:hover:bg-slate-700"
+                to="/">
+                Find a menu
+              </Link>
+            </article>
+            <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <h3 className="m-0 text-base font-bold text-slate-900 dark:text-slate-100">
+                Redux-powered cart
+              </h3>
+              <p className="mt-2 mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                Added dishes appear in your cart, where you can remove items or
+                clear the cart. The header badge stays in sync.
+              </p>
+              <p className="m-0 flex flex-wrap gap-2">
+                <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  cartSlice
+                </code>
+                <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  Header
                 </code>
                 <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                   Cart
                 </code>
               </p>
+              <Link
+                className="mt-4 inline-flex rounded-full bg-orange-50 px-3 py-2 text-sm font-bold text-orange-700 hover:bg-orange-100 dark:bg-slate-800 dark:text-orange-300 dark:hover:bg-slate-700"
+                to="/cart">
+                Open your cart
+              </Link>
             </article>
             <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
               <h3 className="m-0 text-base font-bold text-slate-900 dark:text-slate-100">
-                Selecting shared state
+                Grocery page
               </h3>
               <p className="mt-2 mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                The header badge and cart page read the same store, so the item
-                count stays in sync.
+                Visit the grocery experience, which is loaded on demand when you
+                open its page.
               </p>
               <p className="m-0 flex flex-wrap gap-2">
                 <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                  useSelector
+                  App.js
+                </code>
+                <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  Grocery
+                </code>
+              </p>
+              <Link
+                className="mt-4 inline-flex rounded-full bg-orange-50 px-3 py-2 text-sm font-bold text-orange-700 hover:bg-orange-100 dark:bg-slate-800 dark:text-orange-300 dark:hover:bg-slate-700"
+                to="/grocery">
+                Visit Grocery
+              </Link>
+            </article>
+            <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <h3 className="m-0 text-base font-bold text-slate-900 dark:text-slate-100">
+                Theme and profile
+              </h3>
+              <p className="mt-2 mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                Switch between light and dark themes in the header, or change
+                your name on the home page to see shared context update.
+              </p>
+              <p className="m-0 flex flex-wrap gap-2">
+                <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  ThemeContext
+                </code>
+                <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  UserContext
                 </code>
                 <code className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                   Header
                 </code>
               </p>
+              <Link
+                className="mt-4 inline-flex rounded-full bg-orange-50 px-3 py-2 text-sm font-bold text-orange-700 hover:bg-orange-100 dark:bg-slate-800 dark:text-orange-300 dark:hover:bg-slate-700"
+                to="/">
+                Update your profile
+              </Link>
             </article>
           </div>
         </section>
